@@ -155,7 +155,7 @@ export const FrameworkSection = ({ onOpenTrial }) => {
         <ScrollReveal direction="up" delay={200} duration={600}>
           <div className="mt-14 text-center">
             <button
-              onClick={() => onOpenTrial({ mode: 'trial', plan: 'Mid-Size Business' })}
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
               className="px-8 py-3.5 rounded-full font-semibold text-sm transition-all shadow-md active:scale-98 cursor-pointer inline-flex items-center gap-2 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
             >
               <span>{s6.cta}</span>

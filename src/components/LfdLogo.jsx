@@ -1,15 +1,20 @@
 import React from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 /**
  * Official LFD Cloud Brand Logo Component
- * Shows ONLY the black logo icon and black "LFD Cloud" text,
- * adapting seamlessly to white in dark mode just like VSM Landing.
+ * Shows the black logo icon and black "LFD Cloud" text in light mode,
+ * and seamlessly adapts to white logo icon and white text in dark mode.
  */
 export const LfdLogo = ({ 
   size = 'md', // 'sm' | 'md' | 'lg'
   iconOnly = false,
+  forceBlack = false,
   className = '' 
 }) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark' && !forceBlack;
+
   const heights = {
     sm: 'h-[20px] sm:h-[22px]',
     md: 'h-[25px] sm:h-[28px]',
@@ -29,15 +34,19 @@ export const LfdLogo = ({
     <div className={`inline-flex items-center gap-2.5 select-none ${className}`}>
       {/* Light Mode: Black Icon */}
       <img
-        src="/assets/lfd-icon-black.png"
+        src="/assets/lfd-icon-black.svg"
         alt="LFD Cloud"
-        className={`${hClass} w-auto object-contain block dark:hidden transition-transform duration-200 hover:scale-105`}
+        className={`${hClass} w-auto object-contain transition-transform duration-200 hover:scale-105 ${
+          isDark ? 'hidden' : 'block'
+        } dark:hidden`}
       />
       {/* Dark Mode: White Icon */}
       <img
-        src="/assets/lfd-icon-white.png"
+        src="/assets/lfd-icon-white.svg"
         alt="LFD Cloud"
-        className={`${hClass} w-auto object-contain hidden dark:block transition-transform duration-200 hover:scale-105`}
+        className={`${hClass} w-auto object-contain transition-transform duration-200 hover:scale-105 ${
+          isDark ? 'block' : 'hidden'
+        } hidden dark:block`}
       />
 
       {!iconOnly && (

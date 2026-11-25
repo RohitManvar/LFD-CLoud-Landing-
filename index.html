@@ -2,9 +2,9 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link id="favicon-svg" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link id="favicon-fallback" rel="icon" type="image/png" sizes="64x64" href="/favicon-black.png" />
+    <link id="apple-touch-icon" rel="apple-touch-icon" href="/favicon-black.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LFD Cloud — AI-Powered Lean Transformation Platform by Faber Infinite</title>
     <meta name="description" content="Bring your entire Lean Transformation journey into one intelligent platform. From PPQ and AI-powered VSM to Supply Chain, Supermarket, Material Handling and 2D/3D Factory Layout Design." />
@@ -15,9 +15,50 @@
     <script>
       (function() {
         try {
+          // 1. Detect browser / OS dark mode
+          var mediaQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+          var isBrowserDark = mediaQuery ? mediaQuery.matches : false;
+
+          // 2. Dynamically set favicon to match browser theme:
+          // When browser is dark -> logo is white
+          // When browser is light -> logo is black
+          function updateBrowserFavicon(dark) {
+            var targetSvg = dark ? '/favicon-white.svg' : '/favicon-black.svg';
+            var targetPng = dark ? '/favicon-white.png' : '/favicon-black.png';
+
+            var updateLink = function(id, rel, type, href) {
+              var oldLink = document.getElementById(id);
+              var newLink = document.createElement('link');
+              newLink.id = id;
+              newLink.rel = rel;
+              if (type) newLink.type = type;
+              newLink.href = href;
+              if (oldLink && oldLink.parentNode) {
+                oldLink.parentNode.replaceChild(newLink, oldLink);
+              } else {
+                document.head.appendChild(newLink);
+              }
+            };
+
+            updateLink('favicon-svg', 'icon', 'image/svg+xml', targetSvg);
+            updateLink('favicon-fallback', 'icon', 'image/png', targetPng);
+            updateLink('apple-touch-icon', 'apple-touch-icon', 'image/png', targetPng);
+          }
+
+          // Apply immediately on page load
+          updateBrowserFavicon(isBrowserDark);
+
+          // Listen for browser / OS color scheme switch at runtime
+          if (mediaQuery && mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', function(e) {
+              updateBrowserFavicon(e.matches);
+            });
+          }
+
+          // 3. Website theme initialization
           var stored = localStorage.getItem('lfd_theme');
-          var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && systemDark)) {
+          var isSiteDark = stored === 'dark' || (!stored && isBrowserDark);
+          if (isSiteDark) {
             document.documentElement.classList.add('dark');
             document.documentElement.style.colorScheme = 'dark';
           } else {

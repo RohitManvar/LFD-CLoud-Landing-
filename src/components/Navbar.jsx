@@ -261,7 +261,7 @@ export const Navbar = ({ onOpenTrial, onOpenDemo, onNavigatePricing, onNavigateH
 
           {/* Primary Pill Button (NexVSM high-contrast pill) */}
           <button
-            onClick={() => onOpenTrial({ mode: 'trial', plan: 'Mid-Size Business' })}
+            onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
             className="h-[36px] px-5 rounded-full text-[13px] font-medium transition-all duration-150 cursor-pointer shadow-xs active:scale-98 flex items-center justify-center bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
           >
             Explore LFD Cloud
@@ -338,7 +338,7 @@ export const Navbar = ({ onOpenTrial, onOpenDemo, onNavigatePricing, onNavigateH
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenTrial({ mode: 'trial', plan: 'Mid-Size Business' });
+                onOpenTrial({ mode: 'trial', plan: 'LFD Signature' });
               }}
               className="w-full py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-xs text-center"
             >
@@ -347,7 +347,7 @@ export const Navbar = ({ onOpenTrial, onOpenDemo, onNavigatePricing, onNavigateH
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenDemo({ mode: 'demo', plan: 'Enterprise' });
+                onOpenDemo({ mode: 'demo', plan: 'LFD Enterprise' });
               }}
               className="w-full py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 font-semibold text-xs text-center text-neutral-800 dark:text-neutral-200"
             >

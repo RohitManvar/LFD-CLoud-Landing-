@@ -189,7 +189,7 @@ export const LayoutSection = ({ onOpenTrial }) => {
               Import 2D CAD files (.dwg, .dxf) or sketch layout zones from scratch with automated aisle clearance validation.
             </div>
             <button
-              onClick={() => onOpenTrial({ mode: 'trial', plan: 'Consultant' })}
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
               className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs sm:text-sm transition-colors flex items-center gap-2 shrink-0"
             >
               <span>Model Your Factory Layout</span>

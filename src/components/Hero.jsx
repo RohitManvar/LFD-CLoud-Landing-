@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  ArrowUpRight, 
-  Sparkles, 
-  CheckCircle2, 
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  ArrowUpRight,
+  Sparkles,
+  CheckCircle2,
   FileText,
   Maximize2,
   Box,
@@ -14,6 +14,8 @@ import {
   Activity,
   Layers,
   ChevronRight,
+  ChevronDown,
+  CalendarDays,
   PanelsTopLeft,
   Warehouse,
   FlaskConical,
@@ -24,231 +26,182 @@ import {
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useTheme } from '../context/ThemeContext';
+import { FloatingTiles } from './FloatingTiles';
+import { HERO_TOPICS, tileClasses } from './heroTopics';
+
+const TOPIC_INTERVAL_MS = 3200;
 
 export const Hero = ({ onOpenTrial, onOpenDemo }) => {
   const { theme } = useTheme();
-  
-  // Active capability state: 'ppq' | 'layout' | 'supermarket' | 'capacity'
-  const [activeTab, setActiveTab] = useState('ppq');
-  const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-cycle through the 4 tabs every 4.5 seconds when user isn't hovering
+  // Active capability state for the app window: 'ppq' | 'layout' | 'supermarket' | 'capacity'
+  const [activeTab, setActiveTab] = useState('ppq');
+
+  // Headline topic (drives the phrase, floating tiles, AI prompt and window tab)
+  const [topicIdx, setTopicIdx] = useState(0);
+  const [typed, setTyped] = useState('');
+  const windowRef = useRef(null);
+  const topic = HERO_TOPICS[topicIdx];
+
   useEffect(() => {
-    if (isPaused) return;
     const interval = setInterval(() => {
-      setActiveTab((prev) => {
-        if (prev === 'ppq') return 'layout';
-        if (prev === 'layout') return 'supermarket';
-        if (prev === 'supermarket') return 'capacity';
-        return 'ppq';
-      });
-    }, 4500);
+      setTopicIdx((i) => (i + 1) % HERO_TOPICS.length);
+    }, TOPIC_INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, []);
+
+  // Keep the app window in sync with topics that have a matching module.
+  useEffect(() => {
+    if (topic.tab) setActiveTab(topic.tab);
+  }, [topic]);
+
+  // Type the AI prompt out character by character.
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      setTyped(topic.prompt);
+      return;
+    }
+    setTyped('');
+    let i = 0;
+    const id = setInterval(() => {
+      i += 1;
+      setTyped(topic.prompt.slice(0, i));
+      if (i >= topic.prompt.length) clearInterval(id);
+    }, 28);
+    return () => clearInterval(id);
+  }, [topic]);
+
+  const [ClusterA, ClusterB] = [topic.icons[0], topic.icons[1]];
 
   return (
-    <section className="relative pt-14 sm:pt-20 lg:pt-24 pb-20 md:pb-28 overflow-hidden bg-white dark:bg-[#0D0D0D] text-black dark:text-white transition-colors duration-200">
-      
-      {/* ========================================================================= */}
-      {/* 1. FLOATING 2.5D STICKERS & OBJECTS (Lean Factory Geometry)                */}
-      {/* ========================================================================= */}
-      
-      {/* Universal 8-Point Asterisks */}
-      <div className="pointer-events-none absolute left-6 sm:left-14 top-1/2 -translate-y-20 text-neutral-400 dark:text-neutral-600 select-none hidden md:block transition-all duration-300 opacity-60">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0L13.5 8.5L22 7L15.5 12L22 17L13.5 15.5L12 24L10.5 15.5L2 17L8.5 12L2 7L10.5 8.5L12 0Z" />
-        </svg>
-      </div>
-
-      <div className="pointer-events-none absolute right-8 sm:right-20 top-1/4 text-neutral-400 dark:text-neutral-600 select-none hidden md:block transition-all duration-300 opacity-60">
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0L13.5 8.5L22 7L15.5 12L22 17L13.5 15.5L12 24L10.5 15.5L2 17L8.5 12L2 7L10.5 8.5L12 0Z" />
-        </svg>
-      </div>
-
-      {/* Factory Gear / Gemba Sticker (Top Left) */}
-      <div className="pointer-events-none absolute left-12 top-24 select-none hidden xl:block -rotate-12">
-        <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/30 shadow-md flex items-center justify-center text-teal-600 text-xl font-bold backdrop-blur-xs">
-          🏭
-        </div>
-      </div>
-
-      {/* AGV Tugger / Material Flow Sticker (Far Right) */}
-      <div className="pointer-events-none absolute right-16 top-1/2 select-none hidden xl:block rotate-12">
-        <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 shadow-md flex items-center justify-center text-indigo-600 text-xl backdrop-blur-xs">
-          ⚡
-        </div>
-      </div>
-
-      {/* Continuous Flow Wave Ribbon (Bottom Right) */}
-      <div className="pointer-events-none absolute right-14 bottom-24 select-none hidden xl:block -rotate-6">
-        <svg width="56" height="36" viewBox="0 0 60 40" fill="none" stroke="#0D9488" strokeWidth="3.5" strokeLinecap="round">
-          <path d="M4 30C15 10 25 10 35 30C45 50 55 20 58 12" />
-        </svg>
-      </div>
+    <section className="relative pb-20 md:pb-28 overflow-hidden bg-white dark:bg-[#0D0D0D] text-black dark:text-white transition-colors duration-200">
 
       {/* ========================================================================= */}
-      {/* 2. HERO HEADLINE: "Now you can / PPQ, Lean Layout, Supermarkets / all in one SaaS platform." */}
+      {/* 1. FULL-HEIGHT STAGE: 3D icon tiles flying toward the viewer               */}
       {/* ========================================================================= */}
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
-        
-        <ScrollReveal direction="up" duration={700}>
-          <div className="max-w-4xl mx-auto">
-            
-            {/* Top Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200/80 dark:border-neutral-700/80 text-xs font-mono font-semibold text-neutral-700 dark:text-neutral-300 mb-6 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
-              <span>Lean Factory Design &bull; 15-Step SaaS Architecture</span>
-            </div>
+      <div className="relative min-h-[calc(100svh-56px)] sm:min-h-[calc(100svh-60px)] flex flex-col items-center justify-center bg-[#F7F5F2] dark:bg-[#0D0D0D] transition-colors duration-200">
 
-            {/* Top Line: "Now you can" */}
-            <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-extrabold tracking-[-0.035em] text-black dark:text-white leading-[1.05] select-none">
-              Now you can
-            </h1>
+        <FloatingTiles topicIdx={topicIdx} />
 
-            {/* Middle Line: Interactive Tabs */}
-            <div className="mt-1 sm:mt-2">
-              <div className="text-4xl sm:text-6xl lg:text-[4.8rem] font-extrabold tracking-[-0.035em] leading-[1.1] inline-flex items-center justify-center flex-wrap gap-x-2 sm:gap-x-3 select-none">
-                
-                {/* --- TAB 1: PPQ ANALYSIS --- */}
-                <span
-                  onMouseEnter={() => { setActiveTab('ppq'); setIsPaused(true); }}
-                  onMouseLeave={() => setIsPaused(false)}
-                  onClick={() => setActiveTab('ppq')}
-                  className="relative inline-block cursor-pointer px-1 py-0.5 transition-all duration-200"
-                >
-                  {activeTab === 'ppq' ? (
-                    <span className="inline-block transition-transform duration-150 scale-102">
-                      <span className="text-teal-500">P</span>
-                      <span className="text-teal-400">P</span>
-                      <span className="text-cyan-500">Q</span>
-                      <span className="mx-1 text-black dark:text-white"> </span>
-                      <span className="text-emerald-500">Matrix</span>
-                    </span>
-                  ) : (
-                    <span className="text-neutral-300 dark:text-neutral-700 hover:text-black dark:hover:text-white transition-colors duration-200">
-                      PPQ Matrix
-                    </span>
-                  )}
-                  {activeTab === 'ppq' && (
-                    <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-500 animate-in fade-in zoom-in-95 duration-200 block shadow-xs" />
-                  )}
+        {/* Soft wash behind the copy so tiles never fight the headline */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-[1001] [background:radial-gradient(ellipse_44%_38%_at_50%_50%,rgba(247,245,242,0.92),rgba(247,245,242,0)_100%)] dark:[background:radial-gradient(ellipse_44%_38%_at_50%_50%,rgba(13,13,13,0.9),rgba(13,13,13,0)_100%)]"
+        />
+
+        <div className="relative z-[1002] w-full max-w-5xl mx-auto px-4 sm:px-6 text-center py-16">
+
+          {/* Headline */}
+          <h1 className="text-[40px] sm:text-6xl lg:text-[80px] font-bold tracking-[-0.045em] leading-[1.02] text-[#0D0D0D] dark:text-white select-none">
+            <span className="block">Design your next</span>
+            <span className="inline-flex items-center justify-center gap-3 sm:gap-5 flex-wrap">
+              <span key={topic.key} className="hero-phrase-in inline-block">
+                {topic.phrase}
+              </span>
+              {/* Inline cluster of two tilted icon tiles, like a thumbnail stack */}
+              <span key={`${topic.key}-cluster`} className="hero-cluster-in hidden sm:inline-flex items-center -space-x-3 align-middle">
+                <span className={`w-12 h-12 lg:w-[68px] lg:h-[68px] rounded-[26%] border flex items-center justify-center -rotate-6 shadow-[0_14px_30px_-14px_rgba(13,13,13,0.45)] ${tileClasses(topic, 'grad')}`}>
+                  <ClusterA className="w-1/2 h-1/2" strokeWidth={1.6} />
                 </span>
-
-                {/* Comma separator */}
-                <span className="text-neutral-300 dark:text-neutral-700">,</span>
-
-                {/* --- TAB 2: LEAN LAYOUT --- */}
-                <span
-                  onMouseEnter={() => { setActiveTab('layout'); setIsPaused(true); }}
-                  onMouseLeave={() => setIsPaused(false)}
-                  onClick={() => setActiveTab('layout')}
-                  className="relative inline-block cursor-pointer px-1 py-0.5 transition-all duration-200"
-                >
-                  {activeTab === 'layout' ? (
-                    <span className="inline-block transition-transform duration-150 scale-102">
-                      <span className="text-indigo-500">L</span>
-                      <span className="text-indigo-400">e</span>
-                      <span className="text-blue-500">a</span>
-                      <span className="text-blue-400">n</span>
-                      <span className="mx-1 text-black dark:text-white"> </span>
-                      <span className="text-violet-500">L</span>
-                      <span className="text-purple-400">a</span>
-                      <span className="text-pink-400">y</span>
-                      <span className="text-rose-400">o</span>
-                      <span className="text-amber-400">u</span>
-                      <span className="text-emerald-400">t</span>
-                    </span>
-                  ) : (
-                    <span className="text-neutral-300 dark:text-neutral-700 hover:text-black dark:hover:text-white transition-colors duration-200">
-                      Lean Layout
-                    </span>
-                  )}
-                  {activeTab === 'layout' && (
-                    <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-in fade-in zoom-in-95 duration-200 block shadow-xs" />
-                  )}
+                <span className={`w-12 h-12 lg:w-[68px] lg:h-[68px] rounded-[26%] border flex items-center justify-center rotate-6 shadow-[0_14px_30px_-14px_rgba(13,13,13,0.45)] ${tileClasses(topic, 'paper')}`}>
+                  <ClusterB className="w-1/2 h-1/2" strokeWidth={1.6} />
                 </span>
+              </span>
+            </span>
+          </h1>
 
-                {/* Comma separator */}
-                <span className="text-neutral-300 dark:text-neutral-700">,</span>
-
-                {/* --- TAB 3: SUPERMARKETS --- */}
-                <span
-                  onMouseEnter={() => { setActiveTab('supermarket'); setIsPaused(true); }}
-                  onMouseLeave={() => setIsPaused(false)}
-                  onClick={() => setActiveTab('supermarket')}
-                  className="relative inline-block cursor-pointer px-1 py-0.5 transition-all duration-200"
-                >
-                  {activeTab === 'supermarket' ? (
-                    <span className="inline-block transition-transform duration-150 scale-102">
-                      <span className="text-amber-500">S</span>
-                      <span className="text-amber-400">u</span>
-                      <span className="text-orange-500">p</span>
-                      <span className="text-orange-400">e</span>
-                      <span className="text-rose-400">r</span>
-                      <span className="text-red-500">m</span>
-                      <span className="text-pink-500">a</span>
-                      <span className="text-purple-400">r</span>
-                      <span className="text-teal-400">k</span>
-                      <span className="text-emerald-400">e</span>
-                      <span className="text-cyan-400">t</span>
-                      <span className="text-blue-500">s</span>
-                    </span>
-                  ) : (
-                    <span className="text-neutral-300 dark:text-neutral-700 hover:text-black dark:hover:text-white transition-colors duration-200">
-                      Supermarkets
-                    </span>
-                  )}
-                  {activeTab === 'supermarket' && (
-                    <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400 animate-in fade-in zoom-in-95 duration-200 block shadow-xs" />
-                  )}
-                </span>
-
-              </div>
-            </div>
-
-            {/* Bottom Line: "all in one SaaS platform." */}
-            <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-extrabold tracking-[-0.035em] text-black dark:text-white leading-[1.05] select-none mt-1 sm:mt-2">
-              all in one SaaS platform.
-            </h1>
-
-            {/* Supporting Subtitle */}
-            <p className="mt-5 sm:mt-6 text-base sm:text-lg text-neutral-600 dark:text-neutral-400 font-normal leading-relaxed max-w-2xl mx-auto">
-              From Product-Process-Quantity analysis to 2D/3D plant layout, pull supermarkets, and capacity ramp-up. Design, simulate, and scale your lean factory with LFD Cloud by Faber Infinite.
-            </p>
-
-          </div>
-        </ScrollReveal>
-
-        {/* CTA BUTTONS (Matching OpenAI/ChatGPT Pill & Text Link) */}
-        <ScrollReveal direction="up" delay={150} duration={600}>
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-5 sm:gap-6">
-            
-            {/* Primary Pill Button */}
+          {/* AI prompt pill (opens the trial flow) */}
+          <div className="mt-8 sm:mt-10 mx-auto max-w-[680px] p-1.5 rounded-full bg-white/60 dark:bg-white/5 border border-black/[0.07] dark:border-white/10 backdrop-blur-md flex items-center gap-1.5">
             <button
-              onClick={() => onOpenTrial({ mode: 'trial', plan: 'Professional' })}
-              className="px-7 py-3 rounded-full font-semibold text-sm transition-all shadow-md active:scale-98 cursor-pointer flex items-center gap-1.5 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+              type="button"
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
+              aria-label={`Ask LFD AI to ${topic.prompt}`}
+              className="flex-1 min-w-0 h-14 sm:h-16 pl-5 pr-4 rounded-full bg-white dark:bg-[#161616] border border-black/[0.08] dark:border-white/10 flex items-center gap-3 text-left cursor-text"
             >
-              <span>Start Free Trial*</span>
+              <Sparkles className="w-5 h-5 shrink-0 text-neutral-400" strokeWidth={1.75} />
+              <span className="truncate text-[15px] sm:text-[17px] text-neutral-400 dark:text-neutral-500">
+                Ask LFD AI to{' '}
+                <span className="text-[#0D0D0D] dark:text-white">{typed}</span>
+                <span className="hero-caret inline-block w-[2px] h-[1.1em] -mb-[0.2em] ml-0.5 bg-[#0D0D0D] dark:bg-white" />
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
+              aria-label="Run with LFD AI"
+              className={`shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full border flex items-center justify-center cursor-pointer ${tileClasses(topic, 'grad')}`}
+            >
+              <ArrowRight className="w-5 h-5" strokeWidth={2} />
+            </button>
+          </div>
+
+          {/* CTAs */}
+          <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
+              className="h-14 sm:h-16 px-7 rounded-full font-bold text-[15px] sm:text-base inline-flex items-center gap-1.5 cursor-pointer transition-colors bg-[#0D0D0D] text-white hover:bg-[#1E1E1E] dark:bg-white dark:text-[#0D0D0D] dark:hover:bg-neutral-200"
+            >
+              Start Free Trial*
               <ChevronRight className="w-4 h-4" />
             </button>
-
-            {/* Secondary Link with Diagonal Arrow */}
             <button
-              onClick={() => onOpenDemo({ mode: 'demo', plan: 'Enterprise' })}
-              className="text-sm font-medium transition-colors flex items-center gap-1 group py-1 text-black hover:text-neutral-700 dark:text-white dark:hover:text-neutral-300 cursor-pointer"
+              onClick={() => onOpenDemo({ mode: 'demo', plan: 'LFD Enterprise' })}
+              className="group h-14 sm:h-16 px-7 rounded-full font-bold text-[15px] sm:text-base inline-flex items-center gap-1.5 cursor-pointer transition-colors bg-white text-[#0D0D0D] border border-black/[0.08] hover:bg-neutral-50 dark:bg-transparent dark:text-white dark:border-white/15 dark:hover:bg-white/5"
             >
-              <span>Book Guided Demo</span>
+              Book Guided Demo
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
-
           </div>
-        </ScrollReveal>
+        </div>
 
+        {/* Floating utility card (bottom-right) */}
+        <button
+          type="button"
+          onClick={() => onOpenDemo({ mode: 'demo', plan: 'LFD Enterprise' })}
+          className="hidden lg:flex absolute right-8 bottom-8 z-[1002] w-[210px] flex-col gap-3 p-4 rounded-3xl text-left cursor-pointer bg-white dark:bg-[#161616] border border-black/[0.07] dark:border-white/10 shadow-[0_24px_50px_-24px_rgba(13,13,13,0.35)] hover:-translate-y-0.5 transition-transform"
+        >
+          <span className="flex items-center gap-2 text-sm font-bold text-[#0D0D0D] dark:text-white">
+            <CalendarDays className="w-4 h-4" />
+            Live walkthrough
+          </span>
+          <span className="grid grid-cols-6 gap-1">
+            {HERO_TOPICS.map((t, i) => {
+              const I = t.icons[0];
+              return (
+                <span
+                  key={t.key}
+                  className={`aspect-square rounded-lg border flex items-center justify-center transition-all duration-300 ${i === topicIdx ? tileClasses(t, 'grad') + ' scale-110' : tileClasses(t, 'tint')}`}
+                >
+                  <I className="w-3 h-3" strokeWidth={2} />
+                </span>
+              );
+            })}
+          </span>
+          <span className="text-xs text-neutral-500 dark:text-neutral-400 leading-snug">
+            30-min guided demo with a lean expert. <span className="text-[#0D0D0D] dark:text-white font-semibold">Book →</span>
+          </span>
+        </button>
+
+        {/* Scroll cue */}
+        <button
+          type="button"
+          aria-label="Scroll to platform preview"
+          onClick={() => windowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[1002] w-11 h-11 rounded-full bg-white dark:bg-[#161616] border border-black/[0.07] dark:border-white/10 flex items-center justify-center cursor-pointer hover:translate-y-0.5 transition-transform"
+        >
+          <ChevronDown className="w-5 h-5" />
+        </button>
+
+        {/* Fade the warm stage into the white page */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-24 z-[1001] bg-gradient-to-b from-transparent to-white dark:to-[#0D0D0D]" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
         {/* ========================================================================= */}
         {/* 3. CENTER STAGE MAC APPLICATION WINDOW: REAL LFD CLOUD SAAS PREVIEWS      */}
         {/* ========================================================================= */}
-        <div className="mt-14 sm:mt-18 max-w-5xl mx-auto text-left relative">
+        <div ref={windowRef} className="mt-4 sm:mt-6 max-w-5xl mx-auto text-left relative scroll-mt-24">
           
           {/* Tilted Card on the Left (AutoCAD Blueprint Tag) */}
           <div className="pointer-events-none absolute -left-6 sm:-left-16 md:-left-20 top-20 -rotate-12 z-0 hidden lg:block select-none animate-in fade-in duration-500">
@@ -594,7 +547,7 @@ export const Hero = ({ onOpenTrial, onOpenDemo }) => {
                   {activeTab === 'capacity' && "Module: Capacity Planning & Bottleneck Constraint Radar"}
                 </span>
                 <button 
-                  onClick={() => onOpenTrial({ mode: 'trial', plan: 'Professional' })}
+                  onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
                   className="text-teal-600 dark:text-teal-400 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Launch Live Platform</span>

@@ -35,14 +35,14 @@ export const FinalCtaSection = ({ onOpenTrial, onOpenDemo }) => {
         <ScrollReveal direction="up" delay={150} duration={600}>
           <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6 mb-10">
             <button
-              onClick={() => onOpenTrial({ mode: 'trial', plan: 'Small Business' })}
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Core' })}
               className="px-8 py-3.5 rounded-full font-semibold text-sm transition-all shadow-md active:scale-98 cursor-pointer flex items-center gap-2 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
             >
               <span>{s10.primaryCta}</span>
             </button>
 
             <button
-              onClick={() => onOpenDemo({ mode: 'demo', plan: 'Enterprise' })}
+              onClick={() => onOpenDemo({ mode: 'demo', plan: 'LFD Enterprise' })}
               className="text-sm font-semibold transition-colors flex items-center gap-1 group py-1 text-black hover:text-neutral-700 dark:text-white dark:hover:text-neutral-300 cursor-pointer"
             >
               <span>{s10.secondaryCta}</span>

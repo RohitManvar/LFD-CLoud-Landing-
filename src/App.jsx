@@ -26,7 +26,7 @@ export function App() {
   const handleOpenDemo = (data = {}) => {
     setModalState({
       isOpen: true,
-      initialData: { mode: 'demo', plan: data.plan || 'Enterprise', currency: data.currency || 'USD' }
+      initialData: { mode: 'demo', plan: data.plan || 'LFD Enterprise', currency: data.currency || 'USD' }
     });
   };
 

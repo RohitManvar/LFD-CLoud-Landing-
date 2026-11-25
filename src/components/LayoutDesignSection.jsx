@@ -68,7 +68,7 @@ export const LayoutDesignSection = ({ onOpenTrial }) => {
 
               <div>
                 <button
-                  onClick={() => onOpenTrial({ mode: 'trial', plan: 'Small Business' })}
+                  onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Core' })}
                   className="px-8 py-3.5 rounded-full font-semibold text-sm transition-all shadow-md active:scale-98 cursor-pointer inline-flex items-center gap-2 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
                 >
                   <span>{s5.cta}</span>

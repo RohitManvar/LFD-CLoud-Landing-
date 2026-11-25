@@ -219,7 +219,7 @@ export const FactoryFlowSection = ({ onOpenTrial }) => {
               Model spaghetti charts, measure line intersections and plan pull supermarkets.
             </span>
             <button
-              onClick={() => onOpenTrial({ mode: 'trial', plan: 'Small Business' })}
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Core' })}
               className="px-6 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all shadow-md active:scale-98 cursor-pointer flex items-center gap-1.5 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
             >
               <span>{s4.cta}</span>

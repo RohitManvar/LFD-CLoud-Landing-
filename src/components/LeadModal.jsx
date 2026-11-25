@@ -6,7 +6,7 @@ export const LeadModal = ({ isOpen, onClose, initialData = {} }) => {
   if (!isOpen) return null;
 
   const [mode, setMode] = useState(initialData.mode || 'trial'); // 'trial' | 'demo' | 'login'
-  const [selectedPlan, setSelectedPlan] = useState(initialData.plan || 'Professional');
+  const [selectedPlan, setSelectedPlan] = useState(initialData.plan || 'LFD Signature');
   const currency = initialData.currency || 'USD';
   const [fullName, setFullName] = useState('');
   const [workEmail, setWorkEmail] = useState('');
@@ -51,7 +51,9 @@ export const LeadModal = ({ isOpen, onClose, initialData = {} }) => {
             <p className="mt-2 text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
               {mode === 'demo' 
                 ? `Thank you ${fullName || 'there'}. A Faber Infinite Lean factory design specialist has been notified and will email confirmation to ${workEmail || 'your inbox'}.`
-                : `Your 14-day trial account for ${selectedPlan} plan has been provisioned. We have sent workspace credentials to ${workEmail || 'your email'}.`
+                : selectedPlan.toLowerCase().includes('free')
+                  ? `Your 7-day free trial account has been provisioned. Workspace credentials have been sent to ${workEmail || 'your email'}. No payment will be charged upon expiration, and your project data is safely retained for 30 days.`
+                  : `Your workspace account for ${selectedPlan} has been provisioned. We have sent credentials to ${workEmail || 'your email'}.`
               }
             </p>
             <div className="mt-6 pt-6 border-t border-slate-100">
@@ -70,7 +72,7 @@ export const LeadModal = ({ isOpen, onClose, initialData = {} }) => {
             <div className="mb-6">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide bg-teal-50 border border-teal-200 text-teal-800 mb-3">
                 <Sparkles className="w-3 h-3 text-teal-600" />
-                <span>{mode === 'demo' ? 'Live Product Walkthrough' : mode === 'login' ? 'Account Sign In' : '14-Day Free SaaS Trial'}</span>
+                <span>{mode === 'demo' ? 'Live Product Walkthrough' : mode === 'login' ? 'Account Sign In' : 'Free SaaS Trial'}</span>
               </div>
               <h3 className="text-2xl font-extrabold text-slate-900 tracking-tight">
                 {mode === 'demo' 
@@ -171,20 +173,25 @@ export const LeadModal = ({ isOpen, onClose, initialData = {} }) => {
                     onChange={(e) => setSelectedPlan(e.target.value)}
                     className="w-full px-3 py-2.5 text-sm bg-slate-50 border border-slate-200 text-slate-900 rounded-xl focus:border-teal-500 focus:bg-white focus:outline-none transition-colors"
                   >
-                    <option value="Free Starter">
-                      {currency === 'INR' ? 'Free Starter (₹0/mo)' : 'Free Starter ($0/mo)'} — 2 Factory Projects
+                    <option value="Trial">
+                      {currency === 'INR' ? 'Trial (₹0)' : 'Trial ($0)'} — 7-Day Trial (1 Project, 1 User)
                     </option>
-                    <option value="Professional">
-                      {currency === 'INR' ? 'Professional (₹2,499/mo)' : 'Professional ($29/mo)'} — 10 Active Projects
+                    <option value="LFD Core">
+                      {currency === 'INR' ? 'LFD Core (₹12,499/mo)' : 'LFD Core ($149/mo)'} — Up to 5 Projects, 3 Users
                     </option>
-                    <option value="Consultant">
-                      {currency === 'INR' ? 'Consultant (₹5,499/mo)' : 'Consultant ($69/mo)'} — Recommended (30 Projects)
+                    <option value="LFD Signature">
+                      {currency === 'INR' ? 'LFD Signature (₹33,499/mo)' : 'LFD Signature ($399/mo)'} — Recommended (Up to 15 Projects, 10 Users)
                     </option>
-                    <option value="Business">
-                      {currency === 'INR' ? 'Business (₹11,999/mo)' : 'Business ($149/mo)'} — Up to 5 Seats, 50 Projects
+                    <option value="LFD Enterprise">
+                      LFD Enterprise (Custom Pricing) — Multi-Plant &amp; Consulting Support
                     </option>
-                    <option value="Enterprise">Enterprise (Custom) — Multi-Plant &amp; Custom Integration</option>
                   </select>
+                </div>
+              )}
+
+              {mode === 'trial' && selectedPlan.toLowerCase().includes('free') && (
+                <div className="p-2.5 rounded-xl bg-teal-50/80 border border-teal-200/80 text-[11px] text-teal-900 leading-relaxed">
+                  <span className="font-bold">7-Day Trial:</span> Expires automatically after 7 days with zero automatic charge. All transformation data is retained for 30 days.
                 </div>
               )}
 
@@ -200,7 +207,7 @@ export const LeadModal = ({ isOpen, onClose, initialData = {} }) => {
                   type="submit"
                   className="w-full py-3.5 px-4 bg-black hover:bg-neutral-800 active:scale-98 text-white rounded-full font-semibold text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>{mode === 'demo' ? 'Schedule Walkthrough' : mode === 'login' ? 'Sign In' : 'Activate 14-Day Free Trial'}</span>
+                  <span>{mode === 'demo' ? 'Schedule Walkthrough' : mode === 'login' ? 'Sign In' : 'Start Free Trial'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

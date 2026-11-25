@@ -359,7 +359,7 @@ export const GetInspiredSection = ({ onOpenTrial }) => {
                 <button
                   onClick={() => {
                     setSelectedStory(null);
-                    onOpenTrial({ mode: 'trial', plan: 'Professional' });
+                    onOpenTrial({ mode: 'trial', plan: 'LFD Signature' });
                   }}
                   className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 transition-colors cursor-pointer shadow-xs"
                 >

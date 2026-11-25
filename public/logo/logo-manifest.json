@@ -1,0 +1,326 @@
+{
+  "brand": "LFD Cloud",
+  "tagline": "AI-Powered Lean Transformation Platform by Faber Infinite",
+  "palette": {
+    "faber_navy": {
+      "hex": "#002244",
+      "rgb": "rgb(0, 34, 68)",
+      "use": "Primary corporate navy brand color"
+    },
+    "ocean_navy": {
+      "hex": "#013755",
+      "rgb": "rgb(1, 55, 85)",
+      "use": "Secondary deep ocean tone"
+    },
+    "tech_teal": {
+      "hex": "#027785",
+      "rgb": "rgb(2, 119, 133)",
+      "use": "Dynamic core accent color"
+    },
+    "vibrant_cyan": {
+      "hex": "#00D2D3",
+      "rgb": "rgb(0, 210, 211)",
+      "use": "Glow & high-visibility highlights"
+    },
+    "dark_obsidian": {
+      "hex": "#090D16",
+      "rgb": "rgb(9, 13, 22)",
+      "use": "Dark background & dark text"
+    },
+    "pure_white": {
+      "hex": "#FFFFFF",
+      "rgb": "rgb(255, 255, 255)",
+      "use": "Light background & white text"
+    }
+  },
+  "formats_available": [
+    "svg",
+    "png",
+    "webp",
+    "jpg",
+    "pdf",
+    "eps",
+    "ico"
+  ],
+  "variants": [
+    {
+      "id": "lfd-cloud-logo-black",
+      "name": "LFD Cloud Horizontal Logo (Monochrome Black)",
+      "category": "horizontal",
+      "bg_type": "light",
+      "dimensions": "856x234",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-logo-black.svg",
+        "png": "/logo/png/lfd-cloud-logo-black.png",
+        "png_1x": "/logo/png/lfd-cloud-logo-black-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-logo-black-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-logo-black-4x.png",
+        "webp": "/logo/webp/lfd-cloud-logo-black.webp",
+        "jpg": "/logo/jpg/lfd-cloud-logo-black.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-logo-black.pdf",
+        "eps": "/logo/eps/lfd-cloud-logo-black.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-logo-white",
+      "name": "LFD Cloud Horizontal Logo (Monochrome White)",
+      "category": "horizontal",
+      "bg_type": "dark",
+      "dimensions": "856x234",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-logo-white.svg",
+        "png": "/logo/png/lfd-cloud-logo-white.png",
+        "png_1x": "/logo/png/lfd-cloud-logo-white-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-logo-white-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-logo-white-4x.png",
+        "webp": "/logo/webp/lfd-cloud-logo-white.webp",
+        "jpg": "/logo/jpg/lfd-cloud-logo-white.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-logo-white.pdf",
+        "eps": "/logo/eps/lfd-cloud-logo-white.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-logo-primary",
+      "name": "LFD Cloud Horizontal Logo (Brand Colors / Dark Text)",
+      "category": "horizontal",
+      "bg_type": "light",
+      "dimensions": "856x234",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-logo-primary.svg",
+        "png": "/logo/png/lfd-cloud-logo-primary.png",
+        "png_1x": "/logo/png/lfd-cloud-logo-primary-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-logo-primary-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-logo-primary-4x.png",
+        "webp": "/logo/webp/lfd-cloud-logo-primary.webp",
+        "jpg": "/logo/jpg/lfd-cloud-logo-primary.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-logo-primary.pdf",
+        "eps": "/logo/eps/lfd-cloud-logo-primary.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-logo-primary-white",
+      "name": "LFD Cloud Horizontal Logo (Brand Colors / White Text)",
+      "category": "horizontal",
+      "bg_type": "dark",
+      "dimensions": "856x234",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-logo-primary-white.svg",
+        "png": "/logo/png/lfd-cloud-logo-primary-white.png",
+        "png_1x": "/logo/png/lfd-cloud-logo-primary-white-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-logo-primary-white-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-logo-primary-white-4x.png",
+        "webp": "/logo/webp/lfd-cloud-logo-primary-white.webp",
+        "jpg": "/logo/jpg/lfd-cloud-logo-primary-white.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-logo-primary-white.pdf",
+        "eps": "/logo/eps/lfd-cloud-logo-primary-white.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-logo-cyan",
+      "name": "LFD Cloud Horizontal Logo (Cyan Highlight Accent)",
+      "category": "horizontal",
+      "bg_type": "light",
+      "dimensions": "856x234",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-logo-cyan.svg",
+        "png": "/logo/png/lfd-cloud-logo-cyan.png",
+        "png_1x": "/logo/png/lfd-cloud-logo-cyan-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-logo-cyan-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-logo-cyan-4x.png",
+        "webp": "/logo/webp/lfd-cloud-logo-cyan.webp",
+        "jpg": "/logo/jpg/lfd-cloud-logo-cyan.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-logo-cyan.pdf",
+        "eps": "/logo/eps/lfd-cloud-logo-cyan.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-stacked-black",
+      "name": "LFD Cloud Stacked Logo (Monochrome Black)",
+      "category": "stacked",
+      "bg_type": "light",
+      "dimensions": "560x335",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-stacked-black.svg",
+        "png": "/logo/png/lfd-cloud-stacked-black.png",
+        "png_1x": "/logo/png/lfd-cloud-stacked-black-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-stacked-black-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-stacked-black-4x.png",
+        "webp": "/logo/webp/lfd-cloud-stacked-black.webp",
+        "jpg": "/logo/jpg/lfd-cloud-stacked-black.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-stacked-black.pdf",
+        "eps": "/logo/eps/lfd-cloud-stacked-black.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-stacked-white",
+      "name": "LFD Cloud Stacked Logo (Monochrome White)",
+      "category": "stacked",
+      "bg_type": "dark",
+      "dimensions": "560x335",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-stacked-white.svg",
+        "png": "/logo/png/lfd-cloud-stacked-white.png",
+        "png_1x": "/logo/png/lfd-cloud-stacked-white-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-stacked-white-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-stacked-white-4x.png",
+        "webp": "/logo/webp/lfd-cloud-stacked-white.webp",
+        "jpg": "/logo/jpg/lfd-cloud-stacked-white.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-stacked-white.pdf",
+        "eps": "/logo/eps/lfd-cloud-stacked-white.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-stacked-primary",
+      "name": "LFD Cloud Stacked Logo (Brand Colors / Dark Text)",
+      "category": "stacked",
+      "bg_type": "light",
+      "dimensions": "560x335",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-stacked-primary.svg",
+        "png": "/logo/png/lfd-cloud-stacked-primary.png",
+        "png_1x": "/logo/png/lfd-cloud-stacked-primary-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-stacked-primary-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-stacked-primary-4x.png",
+        "webp": "/logo/webp/lfd-cloud-stacked-primary.webp",
+        "jpg": "/logo/jpg/lfd-cloud-stacked-primary.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-stacked-primary.pdf",
+        "eps": "/logo/eps/lfd-cloud-stacked-primary.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-stacked-primary-white",
+      "name": "LFD Cloud Stacked Logo (Brand Colors / White Text)",
+      "category": "stacked",
+      "bg_type": "dark",
+      "dimensions": "560x335",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-stacked-primary-white.svg",
+        "png": "/logo/png/lfd-cloud-stacked-primary-white.png",
+        "png_1x": "/logo/png/lfd-cloud-stacked-primary-white-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-stacked-primary-white-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-stacked-primary-white-4x.png",
+        "webp": "/logo/webp/lfd-cloud-stacked-primary-white.webp",
+        "jpg": "/logo/jpg/lfd-cloud-stacked-primary-white.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-stacked-primary-white.pdf",
+        "eps": "/logo/eps/lfd-cloud-stacked-primary-white.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-icon-black",
+      "name": "LFD Cloud Icon Symbol (Monochrome Black)",
+      "category": "icon",
+      "bg_type": "light",
+      "dimensions": "256x256",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-icon-black.svg",
+        "png": "/logo/png/lfd-cloud-icon-black.png",
+        "png_1x": "/logo/png/lfd-cloud-icon-black-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-icon-black-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-icon-black-4x.png",
+        "webp": "/logo/webp/lfd-cloud-icon-black.webp",
+        "jpg": "/logo/jpg/lfd-cloud-icon-black.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-icon-black.pdf",
+        "eps": "/logo/eps/lfd-cloud-icon-black.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-icon-white",
+      "name": "LFD Cloud Icon Symbol (Monochrome White)",
+      "category": "icon",
+      "bg_type": "dark",
+      "dimensions": "256x256",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-icon-white.svg",
+        "png": "/logo/png/lfd-cloud-icon-white.png",
+        "png_1x": "/logo/png/lfd-cloud-icon-white-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-icon-white-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-icon-white-4x.png",
+        "webp": "/logo/webp/lfd-cloud-icon-white.webp",
+        "jpg": "/logo/jpg/lfd-cloud-icon-white.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-icon-white.pdf",
+        "eps": "/logo/eps/lfd-cloud-icon-white.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-icon-primary",
+      "name": "LFD Cloud Icon Symbol (Brand Gradients)",
+      "category": "icon",
+      "bg_type": "light",
+      "dimensions": "256x256",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-icon-primary.svg",
+        "png": "/logo/png/lfd-cloud-icon-primary.png",
+        "png_1x": "/logo/png/lfd-cloud-icon-primary-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-icon-primary-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-icon-primary-4x.png",
+        "webp": "/logo/webp/lfd-cloud-icon-primary.webp",
+        "jpg": "/logo/jpg/lfd-cloud-icon-primary.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-icon-primary.pdf",
+        "eps": "/logo/eps/lfd-cloud-icon-primary.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-wordmark-black",
+      "name": "LFD Cloud Wordmark (Monochrome Black)",
+      "category": "wordmark",
+      "bg_type": "light",
+      "dimensions": "590x130",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-wordmark-black.svg",
+        "png": "/logo/png/lfd-cloud-wordmark-black.png",
+        "png_1x": "/logo/png/lfd-cloud-wordmark-black-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-wordmark-black-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-wordmark-black-4x.png",
+        "webp": "/logo/webp/lfd-cloud-wordmark-black.webp",
+        "jpg": "/logo/jpg/lfd-cloud-wordmark-black.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-wordmark-black.pdf",
+        "eps": "/logo/eps/lfd-cloud-wordmark-black.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-wordmark-white",
+      "name": "LFD Cloud Wordmark (Monochrome White)",
+      "category": "wordmark",
+      "bg_type": "dark",
+      "dimensions": "590x130",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-wordmark-white.svg",
+        "png": "/logo/png/lfd-cloud-wordmark-white.png",
+        "png_1x": "/logo/png/lfd-cloud-wordmark-white-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-wordmark-white-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-wordmark-white-4x.png",
+        "webp": "/logo/webp/lfd-cloud-wordmark-white.webp",
+        "jpg": "/logo/jpg/lfd-cloud-wordmark-white.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-wordmark-white.pdf",
+        "eps": "/logo/eps/lfd-cloud-wordmark-white.eps"
+      }
+    },
+    {
+      "id": "lfd-cloud-wordmark-primary",
+      "name": "LFD Cloud Wordmark (Brand Navy & Teal)",
+      "category": "wordmark",
+      "bg_type": "light",
+      "dimensions": "590x130",
+      "files": {
+        "svg": "/logo/svg/lfd-cloud-wordmark-primary.svg",
+        "png": "/logo/png/lfd-cloud-wordmark-primary.png",
+        "png_1x": "/logo/png/lfd-cloud-wordmark-primary-1x.png",
+        "png_2x": "/logo/png/lfd-cloud-wordmark-primary-2x.png",
+        "png_4x": "/logo/png/lfd-cloud-wordmark-primary-4x.png",
+        "webp": "/logo/webp/lfd-cloud-wordmark-primary.webp",
+        "jpg": "/logo/jpg/lfd-cloud-wordmark-primary.jpg",
+        "pdf": "/logo/pdf/lfd-cloud-wordmark-primary.pdf",
+        "eps": "/logo/eps/lfd-cloud-wordmark-primary.eps"
+      }
+    }
+  ],
+  "favicons": [
+    "/logo/favicons/favicon.ico",
+    "/logo/favicons/favicon-16x16.png",
+    "/logo/favicons/favicon-32x32.png",
+    "/logo/favicons/favicon-48x48.png",
+    "/logo/favicons/apple-touch-icon.png",
+    "/logo/favicons/android-chrome-192x192.png",
+    "/logo/favicons/android-chrome-512x512.png"
+  ]
+}

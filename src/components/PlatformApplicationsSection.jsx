@@ -55,7 +55,7 @@ export const PlatformApplicationsSection = ({ onOpenTrial }) => {
 
                   <div className="pt-8">
                     <button
-                      onClick={() => onOpenTrial({ mode: 'trial', plan: 'Small Business' })}
+                      onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Core' })}
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-black dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors cursor-pointer"
                     >
                       <span>{app.cta}</span>
@@ -71,7 +71,7 @@ export const PlatformApplicationsSection = ({ onOpenTrial }) => {
         <ScrollReveal direction="up" delay={200} duration={600}>
           <div className="mt-14 text-center">
             <button
-              onClick={() => onOpenTrial({ mode: 'trial', plan: 'Mid-Size Business' })}
+              onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
               className="px-8 py-3.5 rounded-full font-semibold text-sm transition-all shadow-md active:scale-98 cursor-pointer inline-flex items-center gap-2 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
             >
               <span>{s2.cta}</span>

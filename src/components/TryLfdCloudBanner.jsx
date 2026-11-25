@@ -12,7 +12,7 @@ export const TryLfdCloudBanner = ({ onOpenTrial }) => {
         
         {/* Footnote note directly above banner */}
         <p className="text-center text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 font-mono mb-8 sm:mb-10 max-w-3xl mx-auto">
-          *Available to all plans on web and cloud browsers, and to Professional, Consultant, and Enterprise tiers with multi-user concurrent editing.
+          *Available to all plans on web and cloud browsers, with multi-user collaboration and project tracking available in LFD Core, LFD Signature, and LFD Enterprise tiers.
         </p>
 
         <ScrollReveal direction="up" duration={600}>
@@ -32,7 +32,7 @@ export const TryLfdCloudBanner = ({ onOpenTrial }) => {
             {/* Right Action Button */}
             <div className="shrink-0">
               <button
-                onClick={() => onOpenTrial({ mode: 'trial', plan: 'Professional' })}
+                onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
                 className="px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 transition-all duration-150 cursor-pointer shadow-xs active:scale-98 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
               >
                 <span>Start free trial</span>

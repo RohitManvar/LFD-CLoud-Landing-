@@ -25,15 +25,15 @@ export const CtaBanner = ({ onOpenTrial, onOpenDemo }) => {
         {/* Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
-            onClick={() => onOpenTrial({ mode: 'trial', plan: 'Consultant' })}
+            onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Signature' })}
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-sm sm:text-base transition-all duration-150 flex items-center justify-center gap-2 shadow-xl shadow-teal-600/30 hover:-translate-y-0.5"
           >
-            <span>Start Free 14-Day Trial</span>
+            <span>Start Free Trial</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 
           <button
-            onClick={() => onOpenDemo({ mode: 'demo', plan: 'Enterprise' })}
+            onClick={() => onOpenDemo({ mode: 'demo', plan: 'LFD Enterprise' })}
             className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-900 dark:text-white border border-neutral-300 dark:border-neutral-700 font-semibold text-sm sm:text-base transition-all duration-150 flex items-center justify-center gap-2 hover:-translate-y-0.5"
           >
             <Play className="w-4 h-4 fill-current text-teal-600 dark:text-teal-400" />

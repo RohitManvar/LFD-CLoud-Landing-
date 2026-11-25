@@ -114,7 +114,7 @@ export const PpqSection = ({ onOpenTrial }) => {
 
             <div className="pt-2">
               <button
-                onClick={() => onOpenTrial({ mode: 'trial', plan: 'Professional' })}
+                onClick={() => onOpenTrial({ mode: 'trial', plan: 'LFD Core' })}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300"
               >
                 <span>Upload your product-process Excel sheet &rarr;</span>
